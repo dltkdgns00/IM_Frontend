@@ -9,7 +9,7 @@ const Signup = () =>
   return (
     <div className={styles.signup}>
       <div className={styles.header}>
-        <button onClick={navigate('/')}><img src='svgs/backArrow.svg' alt='backArrow' /></button>
+        <a href="/" onClick={navigate('/')}><img src='svgs/backArrow.svg' alt='backArrow' /></a>
         <p>회원가입</p>
       </div>
       <div className={styles.intro}>

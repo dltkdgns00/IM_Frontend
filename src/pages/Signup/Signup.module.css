@@ -15,11 +15,9 @@
 	margin-bottom: 40px;
 }
 
-.header button {
+.header a {
 	position: absolute;
 	left: 4%;
-	border: none;
-	background-color: transparent;
 }
 
 .header p {
