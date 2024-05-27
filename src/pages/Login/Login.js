@@ -75,7 +75,7 @@ const Login = () =>
           </div>
         </div>
       </div>
-      <a href="/home" onClick={navigate("/")}>Debug:홈으로</a>
+      <a href="/" onClick={navigate("/")}>Debug:홈으로</a>
     </div>
   );
 }

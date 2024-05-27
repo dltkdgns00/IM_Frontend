@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import styles from './NavBar.module.css';
 import { useState } from 'react';
 
@@ -5,9 +6,12 @@ const NavBar = () =>
 {
   const [activeIndex, setActiveIndex] = useState(0);
 
+  const navigate = useNavigate();
+
   const handleNavClick = (index) =>
   {
     setActiveIndex(index);
+    navigate(index === 0 ? '/' : index === 1 ? '/wallet' : index === 2 ? '/openspace' : '/info');
   };
 
   return (

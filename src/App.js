@@ -6,18 +6,47 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 import Login from './pages/Login/Login';
 import SignUp from './pages/Signup/Signup';
-import Main from './pages/Main/Main';
+import Home from './pages/Home/Home';
+import Wallet from './pages/Wallet/Wallet';
+import OpenSpace from './pages/OpenSpace/OpenSpace';
+import Info from './pages/Info/Info';
+import NavBar from './pages/NavBar/NavBar';
 
-function App()
+const App = () =>
 {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/main" element={<Main />} />
+        <Route path="*" element={<Layout />} />
       </Routes>
     </Router>
+  );
+}
+
+const Layout = () =>
+{
+  return (
+    <div>
+      <NavBar />
+      <Main />
+    </div>
+  );
+
+}
+
+const Main = () =>
+{
+  return (
+    <div style={{ paddingBottom: '60px' }}>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/wallet" element={<Wallet />} />
+        <Route path="/openspace" element={<OpenSpace />} />
+        <Route path="/info" element={<Info />} />
+      </Routes>
+    </div>
   );
 }
 
