@@ -11,7 +11,7 @@ const NavBar = () =>
   const handleNavClick = (index) =>
   {
     setActiveIndex(index);
-    navigate(index === 0 ? '/' : index === 1 ? '/wallet' : index === 2 ? '/openspace' : '/info');
+    navigate(index === 0 ? '/' : index === 1 ? '/wallet' : index === 2 ? '/openspace' : index === 3 ? '/info' : '/share');
   };
 
   return (
@@ -27,7 +27,7 @@ const NavBar = () =>
         </div>
       </div>
 
-      <div className={styles.centralButton}>
+      <div className={styles.centralButton} onClick={() => handleNavClick(4)}>
         <img src="/svgs/share.svg" className={styles.icon} alt="share" />
       </div>
 

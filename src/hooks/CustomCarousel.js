@@ -1,6 +1,6 @@
 import Slider from "react-slick";
 
-const CustomCarousel = ({ items, settings, customClass }) =>
+const CustomCarousel = ({ items, settings }) =>
 {
   return (
     <Slider

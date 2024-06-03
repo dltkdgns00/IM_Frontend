@@ -1,5 +1,5 @@
 import styles from './Home.module.css';
-import CustomCarousel from '../../components/CustomCarousel';
+import CustomCarousel from '../../hooks/CustomCarousel';
 
 const Home = () =>
 {

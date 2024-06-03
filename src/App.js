@@ -4,22 +4,28 @@ import 'slick-carousel/slick/slick-theme.css';
 import './App.module.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
-import Login from './pages/Login/Login';
+import ProtectedRoute from './components/ProtectedRoute';
+
+import Signin from './pages/Signin/Signin';
 import SignUp from './pages/Signup/Signup';
 import Home from './pages/Home/Home';
 import Wallet from './pages/Wallet/Wallet';
 import OpenSpace from './pages/OpenSpace/OpenSpace';
 import Info from './pages/Info/Info';
 import NavBar from './pages/NavBar/NavBar';
+import Share from './pages/Share/Share';
+import NewPost from './pages/OpenSpace/NewPost/NewPost';
 
 const App = () =>
 {
   return (
     <Router>
       <Routes>
-        <Route path="/login" element={<Login />} />
+        <Route path="/signin" element={<Signin />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="*" element={<Layout />} />
+        <Route path="/share" element={<ProtectedRoute element={<Share />} />} />
+        <Route path="/newpost" element={<ProtectedRoute element={<NewPost />} />} />
+        <Route path="*" element={<ProtectedRoute element={<Layout />} />} />
       </Routes>
     </Router>
   );
@@ -41,10 +47,10 @@ const Main = () =>
   return (
     <div style={{ paddingBottom: '60px' }}>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/wallet" element={<Wallet />} />
-        <Route path="/openspace" element={<OpenSpace />} />
-        <Route path="/info" element={<Info />} />
+        <Route path="/" element={<ProtectedRoute element={<Home />} />} />
+        <Route path="/wallet" element={<ProtectedRoute element={<Wallet />} />} />
+        <Route path="/openspace" element={<ProtectedRoute element={<OpenSpace />} />} />
+        <Route path="/info" element={<ProtectedRoute element={<Info />} />} />
       </Routes>
     </div>
   );
