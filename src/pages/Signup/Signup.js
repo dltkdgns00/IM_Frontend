@@ -6,10 +6,16 @@ const Signup = () =>
 {
   const navigate = useNavigate();
 
+  const handleBack = (e) =>
+  {
+    e.preventDefault();
+    navigate('/');
+  }
+
   return (
     <div className={styles.signup}>
       <div className={styles.header}>
-        <a href="/" onClick={navigate('/')}><img src='svgs/backArrow.svg' alt='backArrow' /></a>
+        <a href="/" onClick={handleBack}><img src='svgs/backArrow.svg' alt='backArrow' /></a>
         <p>회원가입</p>
       </div>
       <div className={styles.intro}>
