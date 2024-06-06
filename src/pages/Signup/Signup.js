@@ -1,9 +1,23 @@
 import styles from './Signup.module.css';
+import React, { useState, useEffect } from 'react';
 
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const Signup = () =>
 {
+  const [name, setName] = useState('');
+  const [birth, setBirth] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [verifyNumber, setVerifyNumber] = useState('');
+  const [isVerified, setIsVerified] = useState(false); // 인증번호 검증 상태
+  const [isFormValid, setIsFormValid] = useState(false);
+  const [touched, setTouched] = useState({}); // 입력 필드 터치 상태
+  const [errors, setErrors] = useState({});
+
   const navigate = useNavigate();
 
   const handleBack = (e) =>
@@ -11,6 +25,101 @@ const Signup = () =>
     e.preventDefault();
     navigate('/');
   }
+
+  useEffect(() =>
+  {
+    const isBirthValid = birth.length === 8 && /^\d{8}$/.test(birth);
+    const isPhoneNumberValid = phoneNumber.length === 11 && /^\d{11}$/.test(phoneNumber);
+    const isPasswordValid = password.length >= 8;
+    const isPasswordMatch = password === confirmPassword;
+    const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+    setErrors({
+      birth: !isBirthValid,
+      phoneNumber: !isPhoneNumberValid,
+      password: !isPasswordValid,
+      confirmPassword: !isPasswordMatch,
+      email: !isEmailValid,
+    });
+
+    setIsFormValid(
+      name && email && isBirthValid && isPhoneNumberValid && isPasswordValid && isPasswordMatch && isVerified && isEmailValid
+    );
+  }, [name, birth, email, password, confirmPassword, phoneNumber, isVerified]);
+
+
+  const handleVerify = async (e) =>
+  {
+    e.preventDefault();
+
+    const phoneNumber = document.getElementById('phoneNumber').value;
+
+    try
+    {
+      const response = await axios.post('https://introme.co.kr/v1/member/verify-phone', {
+        "phoneNumber": phoneNumber
+      }, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+      console.log(response.data);
+    } catch (error)
+    {
+      console.error('인증번호 발송중 오류가 발생했습니다.', error);
+      alert('인증번호 발송중 오류가 발생했습니다.');
+    }
+  }
+
+  const handleSignup = async (e) =>
+  {
+    e.preventDefault();
+
+    const name = document.getElementById('name').value;
+    const birth = document.getElementById('birth').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const phoneNumber = document.getElementById('phoneNumber').value;
+    const verifyNumber = document.getElementById('verifyNumber').value;
+
+    try
+    {
+      const response = await axios.post('https://introme.co.kr/v1/member/signup?verificationCode=' + verifyNumber, {
+        "name": name,
+        "birth": birth,
+        "email": email,
+        "password": password,
+        "phoneNumber": phoneNumber
+      }, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+      console.log(response.data);
+      if (response.data === '회원가입 완료!')
+      {
+        console.log('회원가입 성공');
+        navigate('/');
+      } else
+      {
+        alert('회원가입 실패');
+      }
+    } catch (error)
+    {
+      console.error('회원가입 중 오류가 발생했습니다.', error);
+      alert('회원가입 중 오류가 발생했습니다.');
+    }
+  }
+
+  const handleChange = (setter) => (e) =>
+  {
+    setter(e.target.value);
+  };
+
+  const handleBlur = (field) => () =>
+  {
+    setTouched({ ...touched, [field]: true });
+  };
 
   return (
     <div className={styles.signup}>
@@ -23,20 +132,87 @@ const Signup = () =>
         <p>효율적으로 공유해보세요.</p>
       </div>
       <div className={styles.signupForm}>
-        <input placeholder='이름' type='text' />
-        <input placeholder='생년월일' type='text' />
-        <input placeholder='이메일' type='text' />
-        <input placeholder='비밀번호' type='password' />
-        <input placeholder='비밀번호 확인' type='password' />
-        <div className={styles.phone}>
-          <input placeholder='휴대폰' type='text' />
-          <button className={styles.verifyButton}>인증번호 받기</button>
-        </div>
-        <div className={styles.verifyPhone}>
-          <input placeholder='인증번호' type='text' />
-          <p>3:00</p>
-        </div>
+        <input
+          id="name"
+          placeholder='이름'
+          type='text'
+          value={name}
+          onChange={handleChange(setName)}
+          onBlur={handleBlur('name')}
+        />
+        <input
+          id="birth"
+          className={touched.birth && errors.birth ? styles.errorInput : ''}
+          placeholder='생년월일("-"를 제외한 8자리)'
+          type='text'
+          value={birth}
+          onChange={handleChange(setBirth)}
+          onBlur={handleBlur('birth')}
+        />
+        {touched.birth && errors.birth && <p className={styles.errorMessage}>생년월일을 올바르게 입력하세요.</p>}
 
+        <input
+          id="email"
+          className={touched.email && errors.email ? styles.errorInput : ''}
+          placeholder='이메일'
+          type='text'
+          value={email}
+          onChange={handleChange(setEmail)}
+          onBlur={handleBlur('email')}
+        />
+        {touched.email && errors.email && <p className={styles.errorMessage}>유효한 이메일을 입력하세요.</p>}
+
+        <input
+          id="password"
+          className={touched.password && errors.password ? styles.errorInput : ''}
+          placeholder='비밀번호(8자리 이상)'
+          type='password'
+          value={password}
+          onChange={handleChange(setPassword)}
+          onBlur={handleBlur('password')}
+        />
+        {touched.password && errors.password && <p className={styles.errorMessage}>비밀번호는 8자리 이상이어야 합니다.</p>}
+
+        <input
+          placeholder='비밀번호 확인'
+          className={touched.confirmPassword && errors.confirmPassword ? styles.errorInput : ''}
+          type='password'
+          value={confirmPassword}
+          onChange={handleChange(setConfirmPassword)}
+          onBlur={handleBlur('confirmPassword')}
+        />
+        {touched.confirmPassword && errors.confirmPassword && <p className={styles.errorMessage}>비밀번호가 일치하지 않습니다.</p>}
+
+        <div className={styles.phone}>
+          <input
+            id="phoneNumber"
+            className={touched.phoneNumber && errors.phoneNumber ? styles.errorInput : ''}
+            placeholder='휴대폰("-"를 제외한 11자리)'
+            type='text'
+            value={phoneNumber}
+            onChange={handleChange(setPhoneNumber)}
+            onBlur={handleBlur('phoneNumber')}
+          />
+          <button className={styles.verifyButton} onClick={handleVerify}>인증번호 받기</button>
+        </div>
+        {touched.phoneNumber && errors.phoneNumber && <p className={styles.errorMessage}>휴대폰 번호를 올바르게 입력하세요.</p>}
+
+        <div className={styles.verifyPhone}>
+          <input
+            id="verifyNumber"
+            placeholder='인증번호'
+            type='text'
+            value={verifyNumber}
+            onChange={handleChange(setVerifyNumber)}
+          />
+        </div>
+        <button
+          className={`${styles.signupButton} ${isFormValid ? styles.active : styles.inactive}`}
+          onClick={handleSignup}
+          disabled={!isFormValid}
+        >
+          가입하기
+        </button>
       </div>
     </div>
   );

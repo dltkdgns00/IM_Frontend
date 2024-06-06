@@ -24,6 +24,7 @@ const Home = () =>
     slidesToScroll: 1,
     swipeToSlide: true,
     adaptiveHeight: true,
+    arrows: false,
   };
 
   const projectItems = [
@@ -48,6 +49,7 @@ const Home = () =>
     swipeToSlide: true,
     adaptiveHeight: true,
     variableWidth: true,
+    arrows: false,
   };
 
   const bizCardItems = [
@@ -68,6 +70,7 @@ const Home = () =>
     swipeToSlide: true,
     adaptiveHeight: true,
     variableWidth: true,
+    arrows: false,
   };
 
   return (

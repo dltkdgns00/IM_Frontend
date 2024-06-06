@@ -2,7 +2,7 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	height: 100vh;
+	width: 100vw;
 }
 
 .header {
@@ -115,4 +115,40 @@
 	font-size: 16px;
 	border-radius: 0;
 	margin-bottom: 0;
+}
+
+.signupButton {
+	background-color: #4755d7;
+	color: white;
+	font-size: 16px;
+	border: 0;
+	border-radius: 8px;
+	width: 90%;
+	height: 56px;
+	margin: auto;
+	margin-top: 20px;
+	margin-bottom: 40px;
+	padding: 0;
+}
+
+.signupButton:hover {
+	background-color: #3a48c0;
+}
+
+.signupButton.active {
+	background-color: #4755d7;
+}
+
+.signupButton.inactive {
+	background-color: #b3b3b3;
+}
+
+.errorInput {
+	border: 1px solid red;
+}
+
+.errorMessage {
+	color: red;
+	font-size: 12px;
+	margin-top: 5px;
 }

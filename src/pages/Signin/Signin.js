@@ -99,7 +99,6 @@ const Signin = () =>
           </div>
         </div>
       </div>
-      <a href="/" onClick={(e) => { e.preventDefault(); navigate('/'); }}>Debug:홈으로</a>
     </div>
   );
 };
