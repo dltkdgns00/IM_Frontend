@@ -1,6 +1,5 @@
+import React, { useState } from 'react';
 import styles from './Signup.module.css';
-import React, { useState, useEffect } from 'react';
-
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
@@ -24,9 +23,9 @@ const Signup = () =>
   {
     e.preventDefault();
     navigate('/');
-  }
+  };
 
-  useEffect(() =>
+  const validateForm = () =>
   {
     const isBirthValid = birth.length === 8 && /^\d{8}$/.test(birth);
     const isPhoneNumberValid = phoneNumber.length === 11 && /^\d{11}$/.test(phoneNumber);
@@ -34,62 +33,55 @@ const Signup = () =>
     const isPasswordMatch = password === confirmPassword;
     const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
-    setErrors({
+    const validationErrors = {
       birth: !isBirthValid,
       phoneNumber: !isPhoneNumberValid,
       password: !isPasswordValid,
       confirmPassword: !isPasswordMatch,
       email: !isEmailValid,
-    });
+    };
 
-    setIsFormValid(
-      name && email && isBirthValid && isPhoneNumberValid && isPasswordValid && isPasswordMatch && isVerified && isEmailValid
-    );
-  }, [name, birth, email, password, confirmPassword, phoneNumber, isVerified]);
+    setErrors(validationErrors);
 
+    const isValid = name && email && isBirthValid && isPhoneNumberValid && isPasswordValid && isPasswordMatch && isVerified && isEmailValid;
+    setIsFormValid(isValid);
+  };
 
   const handleVerify = async (e) =>
   {
     e.preventDefault();
 
-    const phoneNumber = document.getElementById('phoneNumber').value;
-
     try
     {
       const response = await axios.post('https://introme.co.kr/v1/member/verify-phone', {
-        "phoneNumber": phoneNumber
+        phoneNumber: phoneNumber
       }, {
         headers: {
           'Content-Type': 'application/json'
         }
       });
       console.log(response.data);
+      setIsVerified(true); // 인증이 성공하면 true로 설정
+      validateForm(); // 인증 성공 후 유효성 검사
     } catch (error)
     {
-      console.error('인증번호 발송중 오류가 발생했습니다.', error);
-      alert('인증번호 발송중 오류가 발생했습니다.');
+      console.error('인증번호 발송 중 오류가 발생했습니다.', error);
+      alert('인증번호 발송 중 오류가 발생했습니다.');
     }
-  }
+  };
 
   const handleSignup = async (e) =>
   {
     e.preventDefault();
 
-    const name = document.getElementById('name').value;
-    const birth = document.getElementById('birth').value;
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-    const phoneNumber = document.getElementById('phoneNumber').value;
-    const verifyNumber = document.getElementById('verifyNumber').value;
-
     try
     {
       const response = await axios.post('https://introme.co.kr/v1/member/signup?verificationCode=' + verifyNumber, {
-        "name": name,
-        "birth": birth,
-        "email": email,
-        "password": password,
-        "phoneNumber": phoneNumber
+        name: name,
+        birth: birth,
+        email: email,
+        password: password,
+        phoneNumber: phoneNumber
       }, {
         headers: {
           'Content-Type': 'application/json'
@@ -109,16 +101,18 @@ const Signup = () =>
       console.error('회원가입 중 오류가 발생했습니다.', error);
       alert('회원가입 중 오류가 발생했습니다.');
     }
-  }
+  };
 
   const handleChange = (setter) => (e) =>
   {
     setter(e.target.value);
+    validateForm(); // 입력 값 변경 시 유효성 검사
   };
 
   const handleBlur = (field) => () =>
   {
     setTouched({ ...touched, [field]: true });
+    validateForm(); // 필드 포커스 해제 시 유효성 검사
   };
 
   return (
@@ -216,6 +210,6 @@ const Signup = () =>
       </div>
     </div>
   );
-}
+};
 
 export default Signup;

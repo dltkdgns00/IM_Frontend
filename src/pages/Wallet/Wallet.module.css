@@ -1,0 +1,33 @@
+.wallet {
+	display: flex;
+	position: relative;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+	overflow: hidden;
+}
+
+.outerCircle {
+	position: absolute;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 1000px;
+	height: 1000px;
+	background-color: #d9d9d9;
+	border-radius: 50%;
+	left: 30%;
+}
+
+.innerCircle {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 800px;
+	height: 800px;
+	background-color: #ffffff;
+	border-radius: 50%;
+}

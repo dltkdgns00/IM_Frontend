@@ -88,6 +88,7 @@
 	height: 56px;
 	margin: auto;
 	padding: 0;
+	position: relative;
 }
 
 .verifyButton:hover {
@@ -129,6 +130,7 @@
 	margin-top: 20px;
 	margin-bottom: 40px;
 	padding: 0;
+	position: relative;
 }
 
 .signupButton:hover {

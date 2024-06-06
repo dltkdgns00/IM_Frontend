@@ -19,8 +19,8 @@ const Signin = () =>
     try
     {
       const response = await axios.post('https://introme.co.kr/v1/member/signin', {
-        email,
-        password
+        "email": email,
+        "password": password
       }, {
         headers: {
           'Content-Type': 'application/json'
