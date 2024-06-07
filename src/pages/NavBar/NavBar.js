@@ -1,17 +1,41 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import styles from './NavBar.module.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const NavBar = () =>
 {
   const [activeIndex, setActiveIndex] = useState(0);
-
   const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() =>
+  {
+    switch (location.pathname)
+    {
+      case '/':
+        setActiveIndex(0);
+        break;
+      case '/wallet':
+        setActiveIndex(1);
+        break;
+      case '/community/openspace':
+        setActiveIndex(2);
+        break;
+      case '/info':
+        setActiveIndex(3);
+        break;
+      case '/share':
+        setActiveIndex(4);
+        break;
+      default:
+        setActiveIndex(0);
+    }
+  }, [location.pathname]);
 
   const handleNavClick = (index) =>
   {
     setActiveIndex(index);
-    navigate(index === 0 ? '/' : index === 1 ? '/wallet' : index === 2 ? '/openspace' : index === 3 ? '/info' : '/share');
+    navigate(index === 0 ? '/' : index === 1 ? '/wallet' : index === 2 ? '/community/openspace' : index === 3 ? '/info' : '/share');
   };
 
   return (
@@ -33,7 +57,7 @@ const NavBar = () =>
 
       <div className={styles.navWrapper}>
         <div className={`${styles.navItem} ${activeIndex === 2 ? styles.active : ''}`} onClick={() => handleNavClick(2)}>
-          <img src="/svgs/openspace.svg" className={styles.icon} alt="openspace" />
+          <img src="/svgs/openspace.svg" className={styles.icon} alt="community" />
           <span>오픈공간</span>
         </div>
         <div className={`${styles.navItem} ${activeIndex === 3 ? styles.active : ''}`} onClick={() => handleNavClick(3)}>

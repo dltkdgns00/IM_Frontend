@@ -9,11 +9,11 @@ import Signin from './pages/Signin/Signin';
 import SignUp from './pages/Signup/Signup';
 import Home from './pages/Home/Home';
 import Wallet from './pages/Wallet/Wallet';
-import OpenSpace from './pages/OpenSpace/OpenSpace';
+import Community from './pages/Community/Community';
 import Info from './pages/Info/Info';
 import NavBar from './pages/NavBar/NavBar';
 import Share from './pages/Share/Share';
-import NewPost from './pages/OpenSpace/NewPost/NewPost';
+import NewPost from './pages/Community/NewPost/NewPost';
 
 const App = () =>
 {
@@ -38,7 +38,6 @@ const Layout = () =>
       <Main />
     </div>
   );
-
 }
 
 const Main = () =>
@@ -48,7 +47,7 @@ const Main = () =>
       <Routes>
         <Route path="/" element={<ProtectedRoute element={<Home />} />} />
         <Route path="/wallet" element={<ProtectedRoute element={<Wallet />} />} />
-        <Route path="/openspace" element={<ProtectedRoute element={<OpenSpace />} />} />
+        <Route path="/community/*" element={<ProtectedRoute element={<Community />} />} />
         <Route path="/info" element={<ProtectedRoute element={<Info />} />} />
       </Routes>
     </div>
