@@ -76,9 +76,19 @@ const Signup = () =>
 
     try
     {
+      const regex = /^(\d{4})(\d{2})(\d{2})$/;
+
+      const result = birth.match(regex);
+
+      const year = result[1];
+      const month = result[2];
+      const day = result[3];
+
+      const formattedBirth = `${year}-${month}-${day}`;
+
       const response = await axios.post('https://introme.co.kr/v1/member/signup?verificationCode=' + verifyNumber, {
         name: name,
-        birth: birth,
+        birth: formattedBirth,
         email: email,
         password: password,
         phoneNumber: phoneNumber

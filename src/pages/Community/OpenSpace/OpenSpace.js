@@ -29,7 +29,7 @@ const OpenSpace = () =>
       }
     } catch (error)
     {
-      console.error('카드 정보를 불러오는 중 오류 발생', error);
+      console.error('오픈스페이스를 불러오는 중 오류 발생', error);
     }
   };
 
