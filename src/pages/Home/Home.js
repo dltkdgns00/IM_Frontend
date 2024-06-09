@@ -1,5 +1,5 @@
 import styles from './Home.module.css';
-import CustomCarousel from '../../hooks/ImageCarousel';
+import ImageCarousel from '../../hooks/ImageCarousel';
 
 const Home = () =>
 {
@@ -75,20 +75,20 @@ const Home = () =>
 
   return (
     <div className={styles.Home}>
-      <CustomCarousel
+      <ImageCarousel
         items={bannerItems}
         settings={bannerSettings}
       />
       <div className={styles.projectCarousel}>
         <h3>새 프로젝트</h3>
-        <CustomCarousel
+        <ImageCarousel
           items={projectItems}
           settings={projectSettings}
         />
       </div>
       <div className={styles.bizCardCarousel}>
         <h3>최근 업데이트 명함</h3>
-        <CustomCarousel
+        <ImageCarousel
           items={bizCardItems}
           settings={bizCardSettings}
         />

@@ -9,7 +9,7 @@ import TeamSpace from "./TeamSpace/TeamSpace";
 
 import styles from './Community.module.css';
 
-const CommunityWrapper = () =>
+const Community = () =>
 {
   const navigate = useNavigate();
 
@@ -20,25 +20,16 @@ const CommunityWrapper = () =>
 
   return (
     <div>
-      <div>
-        <HeaderBar />
-        <Community />
+      <HeaderBar />
+      <div className={styles.Community}>
+        <Routes>
+          <Route path="/openspace" element={<ProtectedRoute element={<OpenSpace />} />} />
+          <Route path="/teamspace" element={<ProtectedRoute element={<TeamSpace />} />} />
+        </Routes>
       </div>
       <FloatingActionButton onClick={handleFabClick} />
     </div>
   );
 }
 
-const Community = () =>
-{
-  return (
-    <div className={styles.Community}>
-      <Routes>
-        <Route path="/openspace" element={<ProtectedRoute element={<OpenSpace />} />} />
-        <Route path="/teamspace" element={<ProtectedRoute element={<TeamSpace />} />} />
-      </Routes>
-    </div>
-  );
-}
-
-export default CommunityWrapper;
+export default Community;

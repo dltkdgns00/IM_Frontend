@@ -9,11 +9,17 @@
 .post {
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
-	width: 80%;
+	justify-content: space-between;
+	width: 90%;
 	height: 70px;
+	padding-top: 14px;
+	padding-bottom: 10px;
 	box-sizing: border-box;
 	border-bottom: 1px solid #bfbfbf;
+}
+
+.post p {
+	margin: 0;
 }
 
 .post .title {
@@ -25,7 +31,15 @@
 .post .info {
 	display: flex;
 	flex-direction: row;
-	font-size: 16px;
-	color: #767676;
 	margin: 0;
+}
+
+.post .info p {
+	font-size: 14px;
+	color: #767676;
+	margin-right: 8px;
+}
+
+.author {
+	width: 24%;
 }

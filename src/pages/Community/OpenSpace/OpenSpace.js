@@ -22,6 +22,7 @@ const OpenSpace = () =>
       // 서버에서 받아온 데이터의 content 속성 확인
       if (Array.isArray(response.data.content))
       {
+        console.log(response.data.content)
         setPosts(response.data.content);
       } else
       {
@@ -32,6 +33,17 @@ const OpenSpace = () =>
       console.error('오픈스페이스를 불러오는 중 오류 발생', error);
     }
   };
+
+  const updatedDateCheck = (post) =>
+  {
+    if (post.updateAt === null)
+    {
+      return post.createAt;
+    } else
+    {
+      return post.updateAt;
+    }
+  }
 
   useEffect(() =>
   {
@@ -46,8 +58,8 @@ const OpenSpace = () =>
             <div className={styles.title}>{post.title}</div>
             <div className={styles.info}>
               <p className={styles.author}>{post.author}</p>
-              <p className={styles.date}>{post.date}</p>
-              <p className={styles.views}>조회 {post.views} views</p>
+              <p className={styles.date}>{updatedDateCheck(post)}</p>
+              <p className={styles.views}>조회 {post.hit}</p>
             </div>
           </div>
         ))

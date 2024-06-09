@@ -1,6 +1,6 @@
 import Slider from "react-slick";
 
-const CustomCarousel = ({ items, settings }) =>
+const ImageCarousel = ({ items, settings }) =>
 {
   return (
     <Slider
@@ -15,4 +15,4 @@ const CustomCarousel = ({ items, settings }) =>
   );
 };
 
-export default CustomCarousel;
+export default ImageCarousel;

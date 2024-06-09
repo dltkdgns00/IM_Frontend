@@ -9,11 +9,11 @@ import Signin from './pages/Signin/Signin';
 import SignUp from './pages/Signup/Signup';
 import Home from './pages/Home/Home';
 import Wallet from './pages/Wallet/Wallet';
-import Community from './pages/Community/Community';
 import Info from './pages/Info/Info';
 import NavBar from './pages/NavBar/NavBar';
 import Share from './pages/Share/Share';
 import NewPost from './pages/Community/NewPost/NewPost';
+import Community from './pages/Community/Community';
 
 const App = () =>
 {

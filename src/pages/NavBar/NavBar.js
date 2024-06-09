@@ -19,6 +19,7 @@ const NavBar = () =>
         setActiveIndex(1);
         break;
       case '/community/openspace':
+      case '/community/teamspace': // TeamSpace 경로 추가
         setActiveIndex(2);
         break;
       case '/info':
