@@ -1,4 +1,5 @@
 import Slider from "react-slick";
+import styles from './ImageCarousel.module.css';
 
 const ImageCarousel = ({ items, settings }) =>
 {
@@ -8,7 +9,7 @@ const ImageCarousel = ({ items, settings }) =>
     >
       {items.map((item, index) => (
         <div key={index}>
-          <img src={item.src} alt={item.title} />
+          <img className={styles.img} src={item.src} alt={item.title} />
         </div>
       ))}
     </Slider>

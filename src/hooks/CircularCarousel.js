@@ -4,8 +4,17 @@ import "swiper/css";
 
 import "./CircularCarousel.css";
 
+const parseReactElement = (item) =>
+{
+  const { type, key, props } = item;
+  return React.createElement(type, { key, ...props });
+};
+
 const CircularCarousel = ({ items }) =>
 {
+  items.map((item, index) => (
+    console.log(item)
+  ));
   return (
     <Swiper
       direction="vertical"
@@ -15,7 +24,7 @@ const CircularCarousel = ({ items }) =>
     >
       {items.map((item, index) => (
         <SwiperSlide key={index}>
-          {item}
+          {parseReactElement(item)}
         </SwiperSlide>
       ))}
     </Swiper>

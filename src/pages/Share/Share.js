@@ -14,7 +14,7 @@ const Share = () =>
   const decodedMemberCookie = decodeURIComponent(memberCookie);
   const userData = JSON.parse(decodedMemberCookie);
 
-  // console.log(userData);
+  console.log(userData);
 
   const url = userData.url;
 

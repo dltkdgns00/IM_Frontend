@@ -12,7 +12,8 @@ import Wallet from './pages/Wallet/Wallet';
 import Info from './pages/Info/Info';
 import NavBar from './pages/NavBar/NavBar';
 import Share from './pages/Share/Share';
-import NewPost from './pages/Community/NewPost/NewPost';
+import NewPost from './pages/Community/NewWriting/NewPost';
+import NewTeam from './pages/Community/NewWriting/NewTeam';
 import Community from './pages/Community/Community';
 
 const App = () =>
@@ -23,7 +24,8 @@ const App = () =>
         <Route path="/signin" element={<Signin />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/share" element={<ProtectedRoute element={<Share />} />} />
-        <Route path="/newpost" element={<ProtectedRoute element={<NewPost />} />} />
+        <Route path="/newpost/openspace" element={<ProtectedRoute element={<NewPost />} />} />
+        <Route path="/newpost/teamspace" element={<ProtectedRoute element={<NewTeam />} />} />
         <Route path="*" element={<ProtectedRoute element={<Layout />} />} />
       </Routes>
     </Router>

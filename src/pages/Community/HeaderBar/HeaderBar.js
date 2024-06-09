@@ -1,8 +1,8 @@
-import styles from './HeaderBar.module.css';
 import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import styles from './HeaderBar.module.css';
 
-const HeaderBar = () =>
+const HeaderBar = ({ onIndexChange }) =>
 {
   const [activeIndex, setActiveIndex] = useState(0);
   const navigate = useNavigate();
@@ -18,6 +18,11 @@ const HeaderBar = () =>
       setActiveIndex(1);
     }
   }, [location.pathname]);
+
+  useEffect(() =>
+  {
+    onIndexChange(activeIndex);
+  }, [activeIndex, onIndexChange]);
 
   const handleNavClick = (index) =>
   {

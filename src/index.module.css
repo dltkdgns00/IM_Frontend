@@ -6,3 +6,7 @@ body {
 	background-color: #ffffff;
 	overflow: scroll;
 }
+
+body p {
+	margin: 0;
+}

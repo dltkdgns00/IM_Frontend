@@ -12,7 +12,7 @@ const OpenSpace = () =>
     {
       const response = await axios.post('https://introme.co.kr/v1/board/page', {
         "page": index,
-        "size": 10
+        "size": 100,
       }, {
         headers: {
           'Content-Type': 'application/json'
