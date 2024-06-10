@@ -29,11 +29,11 @@ const Wallet = () =>
             <div key={index} className={styles.bizCard}>
               <div className={styles.content}>
                 <div>
-                  <p>{item.name}</p>
-                  <p>{item.org}</p>
+                  <p className={styles.name}>{item.name}</p>
+                  <p className={styles.company}>{item.company}</p>
                 </div>
-                <div>
-                  <p>T. {item.tel}</p>
+                <div className={styles.privacy}>
+                  <p>T. {item.phoneNumber}</p>
                   <p>E. {item.email}</p>
                 </div>
                 <img className={styles.bizCardLogo} src='svgs/bizCardLogo.svg' alt='bizCardLogo' />

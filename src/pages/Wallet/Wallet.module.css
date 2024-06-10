@@ -4,7 +4,7 @@
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	height: 100vh;
+	height: calc(100vh - 60px);
 	overflow: hidden;
 }
 
@@ -39,8 +39,20 @@
 .bizCard p {
 	color: #ffffff;
 	margin: auto;
-	margin-bottom: 8px;
+	margin-bottom: 2.5%;
 	font-weight: lighter;
+}
+
+.bizCard .name {
+	font-size: 1.2em;
+}
+
+.bizCard .company {
+	font-size: 1em;
+}
+
+.bizCard .privacy p {
+	font-size: 0.8em;
 }
 
 .bizCardLogo {

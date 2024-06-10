@@ -11,3 +11,7 @@
 .swiper-slide-active {
 	margin-left: 0;
 }
+
+.swiper-slide-prev {
+	margin-top: 5%;
+}

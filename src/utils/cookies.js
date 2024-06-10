@@ -1,5 +1,5 @@
 // utils/cookies.js
-export const getCookie = (name) =>
+const getCookie = (name) =>
 {
   const nameEQ = name + "=";
   const ca = document.cookie.split(';');
@@ -11,3 +11,10 @@ export const getCookie = (name) =>
   }
   return null;
 };
+
+const deleteCookie = (name) =>
+{
+  document.cookie = name + '=; Max-Age=0; path=/;';
+};
+
+export { getCookie, deleteCookie };
