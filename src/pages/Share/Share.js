@@ -5,6 +5,7 @@ import { ToastContainer, toast } from 'react-toastify';
 
 import styles from './Share.module.css';
 import 'react-toastify/dist/ReactToastify.css';
+import BizCard from '../../hooks/BizCard';
 
 const Share = () =>
 {
@@ -62,25 +63,12 @@ const Share = () =>
         <a href="/" onClick={handleBack}><img src='svgs/backArrow.svg' alt='backArrow' /></a>
         <p>명함 공유</p>
       </div>
-      <div className={styles.bizCard}>
-        <div className={styles.content}>
-          <div>
-            <p>{name}</p>
-            <p>{org}</p>
-          </div>
-          <div>
-            <p>T. {tel}</p>
-            <p>E. {email}</p>
-          </div>
-          <img className={styles.bizCardLogo} src='svgs/bizCardLogo.svg' alt='bizCardLogo' />
-        </div>
-      </div>
+      <BizCard info={{ name: name, company: org, phoneNumber: tel, email: email }} />
       <div className={styles.shareQR}>
         <p>QR 코드</p>
         {url && <QRCode value={url} />}
         <div className={styles.copyUrl}>
-          <button className={styles.copyButton} onClick={copyUrl}><img src='svgs/clipboard.svg' alt='copy' /></button>
-          <p>{url}</p>
+          <button className={styles.copyButton} onClick={copyUrl}><img src='svgs/clipboard.svg' alt='copy' /><p>공유링크 복사</p></button>
         </div>
       </div>
       <ToastContainer />

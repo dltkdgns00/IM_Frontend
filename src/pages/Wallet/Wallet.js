@@ -3,6 +3,7 @@ import styles from "./Wallet.module.css";
 import CircularCarousel from "../../hooks/CircularCarousel";
 import { getCookie } from "../../utils/cookies";
 import axios from 'axios';
+import BizCard from '../../hooks/BizCard';
 
 const Wallet = () =>
 {
@@ -26,19 +27,7 @@ const Wallet = () =>
         if (data.length !== 0)
         {
           const items = data.map((item, index) => (
-            <div key={index} className={styles.bizCard}>
-              <div className={styles.content}>
-                <div>
-                  <p className={styles.name}>{item.name}</p>
-                  <p className={styles.company}>{item.company}</p>
-                </div>
-                <div className={styles.privacy}>
-                  <p>T. {item.phoneNumber}</p>
-                  <p>E. {item.email}</p>
-                </div>
-                <img className={styles.bizCardLogo} src='svgs/bizCardLogo.svg' alt='bizCardLogo' />
-              </div>
-            </div>
+            <BizCard key={index} info={item} />
           ));
           setItems(items);
         } else

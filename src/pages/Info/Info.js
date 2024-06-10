@@ -1,3 +1,4 @@
+import BizCard from "../../hooks/BizCard";
 import { deleteCookie, getCookie } from "../../utils/cookies";
 import styles from './Info.module.css';
 
@@ -21,19 +22,7 @@ const Info = () =>
         <img src="/images/info/person.png" alt="person" />
         <p>{userData.name}</p>
       </div>
-      <div className={styles.bizCard}>
-        <div className={styles.content}>
-          <div>
-            <p className={styles.name}>{userData.name}</p>
-            <p className={styles.company}>{userData.org}</p>
-          </div>
-          <div className={styles.privacy}>
-            <p>T. {userData.phoneNumber}</p>
-            <p>E. {userData.email}</p>
-          </div>
-          <img className={styles.bizCardLogo} src='svgs/bizCardLogo.svg' alt='bizCardLogo' />
-        </div>
-      </div>
+      <BizCard info={{ name: userData.name, company: userData.org, phoneNumber: userData.phoneNumber, email: userData.email }} />
       <img className={styles.infoBanner} src="/images/info/infoBanner.png" alt="infoBanner" />
       <button onClick={handleLogout}>debug.logout</button>
     </div>
