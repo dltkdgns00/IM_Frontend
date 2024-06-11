@@ -15,6 +15,8 @@ import Share from './pages/Share/Share';
 import NewPost from './pages/Community/NewWriting/NewPost';
 import NewTeam from './pages/Community/NewWriting/NewTeam';
 import Community from './pages/Community/Community';
+import Post from './pages/Community/Writing/Post';
+import Team from './pages/Community/Writing/Team';
 
 const App = () =>
 {
@@ -26,6 +28,8 @@ const App = () =>
         <Route path="/share" element={<ProtectedRoute element={<Share />} />} />
         <Route path="/newpost/openspace" element={<ProtectedRoute element={<NewPost />} />} />
         <Route path="/newpost/teamspace" element={<ProtectedRoute element={<NewTeam />} />} />
+        <Route path="/community/openspace/:postId" element={<ProtectedRoute element={<Post />} />} />
+        <Route path="/community/teamspace/:teamId" element={<ProtectedRoute element={<Team />} />} />
         <Route path="*" element={<ProtectedRoute element={<Layout />} />} />
       </Routes>
     </Router>

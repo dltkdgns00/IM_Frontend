@@ -2,10 +2,13 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import styles from './TeamSpace.module.css';
 import { getCookie } from "../../../utils/cookies";
+import { useNavigate } from 'react-router-dom';
 
 const TeamSpace = () =>
 {
   const [teams, setTeams] = useState([]);
+
+  const navigate = useNavigate();
 
   const fetchData = async () =>
   {
@@ -58,6 +61,15 @@ const TeamSpace = () =>
     return memberList;
   }
 
+
+  const handleTeam = (teamId) =>
+  {
+    return () =>
+    {
+      navigate(`/community/teamspace/${teamId}`);
+    }
+  }
+
   useEffect(() =>
   {
     fetchData();
@@ -67,7 +79,7 @@ const TeamSpace = () =>
     <div className={styles.TeamSpace}>
       {teams.length > 0 ? (
         teams.map((team, index) => (
-          <div className={styles.team} key={index}>
+          <div className={styles.team} onClick={handleTeam(team.id)} key={index}>
             <img className={styles.thumbnail} src={imgGRC(index)} alt="thumbnail" />
             <div className={styles.content}>
               <div className={styles.title}>{team.name}</div>

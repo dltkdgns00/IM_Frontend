@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
 import axios from 'axios';
 import styles from './OpenSpace.module.css';
+import { useNavigate } from "react-router-dom";
 
 const OpenSpace = () =>
 {
   const [posts, setPosts] = useState([]);
+
+  const navigate = useNavigate();
 
   const fetchData = async (index) =>
   {
@@ -45,6 +48,14 @@ const OpenSpace = () =>
     }
   }
 
+  const handlePost = (postId) =>
+  {
+    return () =>
+    {
+      navigate(`/community/openspace/${postId}`);
+    }
+  }
+
   useEffect(() =>
   {
     fetchData(0);
@@ -54,7 +65,7 @@ const OpenSpace = () =>
     <div className={styles.OpenSpace}>
       {posts.length > 0 ? (
         posts.map((post, index) => (
-          <div className={styles.post} key={index}>
+          <div onClick={handlePost(post.id)} className={styles.post} key={index}>
             <div className={styles.title}>{post.title}</div>
             <div className={styles.info}>
               <p className={styles.author}>{post.author}</p>
