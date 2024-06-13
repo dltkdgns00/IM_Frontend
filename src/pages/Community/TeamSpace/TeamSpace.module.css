@@ -12,7 +12,7 @@
 	flex-direction: row;
 	flex-wrap: wrap;
 	justify-content: left;
-	margin-top: 20px;
+	margin-top: 14px;
 	box-sizing: border-box;
 	border-bottom: 1px solid #bfbfbf;
 	padding-top: 9px;
@@ -29,12 +29,20 @@
 	height: 90px;
 }
 
+.context {
+	display: flex;
+	width: calc(100% - 106px);
+	margin-left: 16px;
+	flex-direction: row;
+	justify-content: space-between;
+	box-sizing: border-box;
+}
+
 .content {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	margin-left: 16px;
-	width: 50%;
+	width: calc(100% - 50px);
 	box-sizing: border-box;
 }
 

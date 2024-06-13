@@ -40,7 +40,7 @@ const TeamSpace = () =>
       return '/images/teamSpace/3.png';
   }
 
-  const teminateDate = (date) =>
+  const terminateDate = (date) =>
   {
     if (date === null)
       return '진행중';
@@ -81,17 +81,19 @@ const TeamSpace = () =>
         teams.map((team, index) => (
           <div className={styles.team} onClick={handleTeam(team.id)} key={index}>
             <img className={styles.thumbnail} src={imgGRC(index)} alt="thumbnail" />
-            <div className={styles.content}>
-              <div className={styles.title}>{team.name}</div>
-              <div className={styles.info}>
-                <p>{team.create + ' ~ ' + teminateDate(team.terminate)}</p>
-                <p>대표자: {team.owner}</p>
-                <p>팀원: {memberParse(team.members)}</p>
+            <div className={styles.context}>
+              <div className={styles.content}>
+                <div className={styles.title}>{team.name}</div>
+                <div className={styles.info}>
+                  <p>{team.create + ' ~ ' + terminateDate(team.terminate)}</p>
+                  <p>대표자: {team.owner}</p>
+                  <p>팀원: {memberParse(team.members)}</p>
+                </div>
               </div>
-            </div>
-            <div className={styles.member}>
-              <img src="/svgs/person.svg" alt="members"></img>
-              <p>{team.members.length}</p>
+              <div className={styles.member}>
+                <img src="/svgs/person.svg" alt="members"></img>
+                <p>{team.members.length}</p>
+              </div>
             </div>
           </div>
         ))

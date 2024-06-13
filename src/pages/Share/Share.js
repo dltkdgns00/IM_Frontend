@@ -5,7 +5,7 @@ import { ToastContainer, toast } from 'react-toastify';
 
 import styles from './Share.module.css';
 import 'react-toastify/dist/ReactToastify.css';
-import BizCard from '../../hooks/BizCard';
+import BizCard from '../../components/BizCard';
 
 const Share = () =>
 {
@@ -54,13 +54,13 @@ const Share = () =>
   const handleBack = (e) =>
   {
     e.preventDefault();
-    navigate('/');
+    navigate(-1);
   }
 
   return (
     <div className={styles.share}>
       <div className={styles.header}>
-        <a href="/" onClick={handleBack}><img src='svgs/backArrow.svg' alt='backArrow' /></a>
+        <div onClick={handleBack}><img src='svgs/backArrow.svg' alt='backArrow' /></div>
         <p>명함 공유</p>
       </div>
       <BizCard info={{ name: name, company: org, phoneNumber: tel, email: email }} />

@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import styles from './EditTeam.module.css';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getCookie } from '../../../utils/cookies';
 import axios from 'axios';
+import { getCookie } from '../../../../utils/cookies';
+import { useParams } from 'react-router-dom';
 
-import styles from './NewTeam.module.css';
-
-const NewTeam = () =>
+const EditTeam = () =>
 {
+  const { teamId } = useParams();
   const [title, setTitle] = useState('');
   const [project, setProject] = useState('');
   const [content, setContent] = useState('');
@@ -28,6 +29,28 @@ const NewTeam = () =>
     setContent(e.target.value);
   };
 
+  const handleGetTeam = async () =>
+  {
+    try
+    {
+      const response = await axios.get(`https://introme.co.kr/v1/team/d/${teamId}`);
+
+      if (response.data)
+      {
+        setTitle(response.data.name);
+        setProject(response.data.project);
+        setContent(response.data.description);
+      } else
+      {
+        console.error('Unexpected data format:', response.data);
+      }
+    }
+    catch (error)
+    {
+      console.error('팀을 불러오는 중 오류 발생', error);
+    }
+  }
+
   const handleSubmit = async (e) =>
   {
     e.preventDefault();
@@ -38,16 +61,10 @@ const NewTeam = () =>
       return;
     }
 
-    const memberCookie = getCookie('memberCookie');
-    const decodedMemberCookie = decodeURIComponent(memberCookie);
-    const userData = JSON.parse(decodedMemberCookie);
-
-    const response = await axios.post('https://introme.co.kr/v1/team/build', {
+    const response = await axios.put(`https://introme.co.kr/v1/team/:${teamId}`, {
       "name": title,
       "project": project,
       "description": content,
-      "image": null,
-      "owner": userData.id
     }, {
       headers: {
         'Content-Type': 'application/json'
@@ -65,15 +82,19 @@ const NewTeam = () =>
     }
   };
 
+  useEffect(() =>
+  {
+    handleGetTeam();
+  }, []); // teamId가 변경될 때마다 fetchData 호출
+
   const handleCancel = () =>
   {
     navigate(-1);
   }
-
   return (
-    <div className={styles.newteam}>
+    <div className={styles.editteam}>
       <div className={styles.p}>
-        <p>새 프로젝트</p>
+        <p>팀 수정</p>
       </div>
       <form
         className={styles.form}
@@ -105,4 +126,4 @@ const NewTeam = () =>
   );
 }
 
-export default NewTeam;
+export default EditTeam;

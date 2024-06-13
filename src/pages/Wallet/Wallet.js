@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import styles from "./Wallet.module.css";
-import CircularCarousel from "../../hooks/CircularCarousel";
+import CircularCarousel from "../../components/CircularCarousel";
 import { getCookie } from "../../utils/cookies";
 import axios from 'axios';
-import BizCard from '../../hooks/BizCard';
+import BizCard from '../../components/BizCard';
 
 const Wallet = () =>
 {

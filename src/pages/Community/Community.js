@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
-import FloatingActionButton from "../../hooks/FloatingActionButton";
+import FloatingActionButton from "../../components/FloatingActionButton";
 import HeaderBar from "./HeaderBar/HeaderBar";
 import ProtectedRoute from "../../components/ProtectedRoute";
 import OpenSpace from "./OpenSpace/OpenSpace";
@@ -17,10 +17,10 @@ const Community = () =>
   {
     if (activeIndex === 0)
     {
-      navigate('/newpost/openspace');
+      navigate('/community/openspace/newpost');
     } else if (activeIndex === 1)
     {
-      navigate('/newpost/teamspace');
+      navigate('/community/teamspace/newteam');
     }
   };
 

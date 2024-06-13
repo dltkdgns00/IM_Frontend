@@ -1,6 +1,6 @@
 import styles from './Home.module.css';
-import CustomCarousel from '../../hooks/CustomCarousel';
-import BizCard from '../../hooks/BizCard';
+import CustomCarousel from '../../components/CustomCarousel';
+import BizCard from '../../components/BizCard';
 
 import { React, useEffect, useState } from 'react';
 import { getCookie } from '../../utils/cookies';
