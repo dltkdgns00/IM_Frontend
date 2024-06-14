@@ -60,7 +60,7 @@ const Share = () =>
   return (
     <div className={styles.share}>
       <div className={styles.header}>
-        <div onClick={handleBack}><img src='svgs/backArrow.svg' alt='backArrow' /></div>
+        <div onClick={handleBack}><img src='/svgs/backArrow.svg' alt='backArrow' /></div>
         <p>명함 공유</p>
       </div>
       <BizCard info={{ name: name, company: org, phoneNumber: tel, email: email }} />
@@ -68,7 +68,13 @@ const Share = () =>
         <p>QR 코드</p>
         {url && <QRCode value={url} />}
         <div className={styles.copyUrl}>
-          <button className={styles.copyButton} onClick={copyUrl}><img src='svgs/clipboard.svg' alt='copy' /><p>공유링크 복사</p></button>
+          <button className={styles.copyButton} onClick={copyUrl}><img src='/svgs/clipboard.svg' alt='copy' /><p>공유링크 복사</p></button>
+        </div>
+      </div>
+      <div className={styles.shareSNS}>
+        <div className={styles.snsIcons}>
+          <img src='/svgs/kakaoTalk.svg' alt='kakaoTalk' />
+          <img src='/svgs/instagram.svg' alt='instagram' />
         </div>
       </div>
       <ToastContainer />

@@ -111,3 +111,17 @@
 	border-radius: 8px;
 	background-color: #4755d7;
 }
+
+.snsIcons {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	width: 90%;
+	margin-top: 20px;
+}
+
+.snsIcons img {
+	margin: 0 10px;
+	width: 50px;
+}
