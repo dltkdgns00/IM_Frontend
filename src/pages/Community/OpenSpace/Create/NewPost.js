@@ -42,7 +42,7 @@ const NewPost = () =>
       "content": content
     }, {
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'multipart/form-data'
       }
     });
 

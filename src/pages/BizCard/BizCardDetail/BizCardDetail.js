@@ -58,7 +58,7 @@ const BizCardDetail = () =>
   {
     fetchData();
     fetchValid();
-  }, [userId]);
+  }, []);
 
 
   const handleBack = (e) =>

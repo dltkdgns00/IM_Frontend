@@ -17,10 +17,10 @@ import NewPost from './pages/Community/OpenSpace/Create/NewPost';
 import NewTeam from './pages/Community/TeamSpace/Create/NewTeam';
 import ReadPost from './pages/Community/OpenSpace/Read/Post';
 import ReadTeam from './pages/Community/TeamSpace/Read/Team';
-import InviteMember from './pages/Community/OpenSpace/InviteMember/InviteMember';
-import EditTeam from './pages/Community/OpenSpace/Update/EditTeam';
-import DeleteTeam from './pages/Community/OpenSpace/Delete/DeleteTeam';
-import TerminateProject from './pages/Community/OpenSpace/TerminateProject/TerminateProject';
+import InviteMember from './pages/Community/TeamSpace/InviteMember/InviteMember';
+import EditTeam from './pages/Community/TeamSpace/Update/EditTeam';
+import DeleteTeam from './pages/Community/TeamSpace/Delete/DeleteTeam';
+import TerminateProject from './pages/Community/TeamSpace/TerminateProject/TerminateProject';
 import BizCardDetail from './pages/BizCard/BizCardDetail/BizCardDetail';
 
 const App = () =>
