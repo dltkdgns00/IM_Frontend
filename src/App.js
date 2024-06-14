@@ -12,15 +12,21 @@ import Wallet from './pages/Wallet/Wallet';
 import Info from './pages/Info/Info';
 import NavBar from './pages/NavBar/NavBar';
 import Share from './pages/Share/Share';
+
 import Community from './pages/Community/Community';
+
 import NewPost from './pages/Community/OpenSpace/Create/NewPost';
-import NewTeam from './pages/Community/TeamSpace/Create/NewTeam';
 import ReadPost from './pages/Community/OpenSpace/Read/Post';
+import EditPost from './pages/Community/OpenSpace/Update/EditPost';
+import DeletePost from './pages/Community/OpenSpace/Delete/DeletePost';
+
+import NewTeam from './pages/Community/TeamSpace/Create/NewTeam';
 import ReadTeam from './pages/Community/TeamSpace/Read/Team';
 import InviteMember from './pages/Community/TeamSpace/InviteMember/InviteMember';
 import EditTeam from './pages/Community/TeamSpace/Update/EditTeam';
 import DeleteTeam from './pages/Community/TeamSpace/Delete/DeleteTeam';
 import TerminateProject from './pages/Community/TeamSpace/TerminateProject/TerminateProject';
+
 import BizCardDetail from './pages/BizCard/BizCardDetail/BizCardDetail';
 
 const App = () =>
@@ -34,6 +40,8 @@ const App = () =>
 
         <Route path="/community/openspace/newpost" element={<ProtectedRoute element={<NewPost />} />} />
         <Route path="/community/openspace/:postId" element={<ProtectedRoute element={<ReadPost />} />} />
+        <Route path="/community/openspace/:postId/editpost" element={<ProtectedRoute element={<EditPost />} />} />
+        <Route path="/community/openspace/:postId/deletepost" element={<ProtectedRoute element={<DeletePost />} />} />
 
         <Route path="/community/teamspace/newteam" element={<ProtectedRoute element={<NewTeam />} />} />
         <Route path="/community/teamspace/:teamId" element={<ProtectedRoute element={<ReadTeam />} />} />

@@ -17,14 +17,19 @@
 	margin-bottom: 40px;
 }
 
-.header div {
+.header p {
+	margin: 0;
+	font-size: 1.2rem;
+}
+
+.backArrow {
 	position: absolute;
 	left: 4%;
 }
 
-.header p {
-	margin: 0;
-	font-size: 1.2rem;
+.more {
+	position: absolute;
+	right: 4%;
 }
 
 .postContent {

@@ -5,6 +5,7 @@ import { getCookie } from "../../../../utils/cookies";
 import { useNavigate } from "react-router-dom";
 
 import styles from './Post.module.css';
+import DropdownMenu from "../../../../components/DropDownMenu";
 
 const Post = () =>
 {
@@ -12,6 +13,7 @@ const Post = () =>
   const [post, setPost] = useState({});
   const [comment, setComment] = useState({});
   const [commentContent, setCommentContent] = useState('');
+  const [isDropdownVisible, setIsDropdownVisible] = useState(false);
 
   const navigate = useNavigate();
 
@@ -20,6 +22,15 @@ const Post = () =>
   const userData = JSON.parse(decodedMemberCookie);
 
   const userId = userData.id;
+  const authorId = post.authorId;
+
+  const dropDownMenuOptions = [];
+
+  if (authorId === userId)
+  {
+    dropDownMenuOptions.push({ label: '게시글 수정', path: './editpost' });
+    dropDownMenuOptions.push({ label: '게시글 삭제', path: './deletepost' });
+  }
 
   const fetchPost = async () =>
   {
@@ -105,6 +116,11 @@ const Post = () =>
     navigate(-1);
   }
 
+  const toggleDropdown = () =>
+  {
+    setIsDropdownVisible(!isDropdownVisible);
+  };
+
   useEffect(() =>
   {
     fetchPost();
@@ -114,7 +130,11 @@ const Post = () =>
   return (
     <div className={styles.post}>
       <div className={styles.header}>
-        <div onClick={handleBack}><img src='/svgs/backArrow.svg' alt='backArrow' /></div>
+        <div className={styles.backArrow} onClick={handleBack}><img src='/svgs/backArrow.svg' alt='backArrow' /></div>
+        {dropDownMenuOptions.length > 0 && (
+          <div className={styles.more} onClick={toggleDropdown}><img src='/svgs/more.svg' alt='more' /></div>
+        )}
+        <DropdownMenu isVisible={isDropdownVisible} options={dropDownMenuOptions} />
       </div>
       <div className={styles.postContent}>
         <div className={styles.title}>

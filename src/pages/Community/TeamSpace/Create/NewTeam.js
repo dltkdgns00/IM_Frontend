@@ -50,7 +50,7 @@ const NewTeam = () =>
       "owner": userData.id
     }, {
       headers: {
-        'Content-Type': 'multipart/form-data'
+        'Content-Type': 'application/json'
       }
     });
 

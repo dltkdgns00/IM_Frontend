@@ -61,7 +61,7 @@ const EditTeam = () =>
       return;
     }
 
-    const response = await axios.put(`https://introme.co.kr/v1/team/:${teamId}`, {
+    const response = await axios.put(`https://introme.co.kr/v1/team/${teamId}`, {
       "name": title,
       "project": project,
       "description": content,
@@ -119,7 +119,7 @@ const EditTeam = () =>
           value={content}
           onChange={handleContentChange}
         />
-        <button className={styles.submit} type="submit">생성</button>
+        <button className={styles.submit} type="submit">수정</button>
         <button className={styles.cancel} onClick={handleCancel} type="button">취소</button>
       </form>
     </div>
