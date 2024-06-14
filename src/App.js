@@ -21,6 +21,7 @@ import InviteMember from './pages/Community/OpenSpace/InviteMember/InviteMember'
 import EditTeam from './pages/Community/OpenSpace/Update/EditTeam';
 import DeleteTeam from './pages/Community/OpenSpace/Delete/DeleteTeam';
 import TerminateProject from './pages/Community/OpenSpace/TerminateProject/TerminateProject';
+import BizCardDetail from './pages/BizCard/BizCardDetail/BizCardDetail';
 
 const App = () =>
 {
@@ -40,6 +41,8 @@ const App = () =>
         <Route path="/community/teamspace/:teamId/editteam" element={<ProtectedRoute element={<EditTeam />} />} />
         <Route path="/community/teamspace/:teamId/deleteteam" element={<ProtectedRoute element={<DeleteTeam />} />} />
         <Route path="/community/teamspace/:teamId/terminateproject" element={<ProtectedRoute element={<TerminateProject />} />} />
+
+        <Route path="/bizcard/:userId" element={<ProtectedRoute element={<BizCardDetail />} />} />
 
         <Route path="*" element={<ProtectedRoute element={<Layout />} />} />
       </Routes>

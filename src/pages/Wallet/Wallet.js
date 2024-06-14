@@ -3,7 +3,7 @@ import styles from "./Wallet.module.css";
 import CircularCarousel from "../../components/CircularCarousel";
 import { getCookie } from "../../utils/cookies";
 import axios from 'axios';
-import BizCard from '../../components/BizCard';
+import BizCard from '../BizCard/BizCard';
 
 const Wallet = () =>
 {
@@ -27,7 +27,7 @@ const Wallet = () =>
         if (data.length !== 0)
         {
           const items = data.map((item, index) => (
-            <BizCard key={index} info={item} />
+            <BizCard key={index} info={item} isNavigate={true} />
           ));
           setItems(items);
         } else
@@ -51,13 +51,21 @@ const Wallet = () =>
     return <div>로딩 중...</div>;
   }
 
+  // 슬라이드 개수 체크 및 복제
+  const minSlides = 4; // 최소 슬라이드 개수 설정 (예: 3)
+  const extendedItems = items.length > 0 ? [...items] : [];
+  while (extendedItems.length < minSlides)
+  {
+    extendedItems.push(...items);
+  }
+
   return (
     <div className={styles.wallet}>
       <div className={styles.outerCircle}>
         <div className={styles.innerCircle} />
       </div>
       {items.length > 0 ? (
-        <CircularCarousel items={items} />
+        <CircularCarousel items={extendedItems} />
       ) : (
         <div className={styles.noCard}>
           <p>받은 명함이 없습니다.</p>

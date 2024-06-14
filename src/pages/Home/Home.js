@@ -1,6 +1,6 @@
 import styles from './Home.module.css';
 import CustomCarousel from '../../components/CustomCarousel';
-import BizCard from '../../components/BizCard';
+import BizCard from '../BizCard/BizCard';
 
 import { React, useEffect, useState } from 'react';
 import { getCookie } from '../../utils/cookies';
@@ -8,6 +8,9 @@ import axios from 'axios';
 
 const Home = () =>
 {
+  const [bizCardItems, setItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+
   const bannerItems = [
     <img className={styles.img} src="/images/bannerCarousel/1.png" alt="1" />,
     <img className={styles.img} src="/images/bannerCarousel/2.png" alt="2" />,
@@ -39,9 +42,15 @@ const Home = () =>
     arrows: false,
   };
 
-  const [bizCardItems, setItems] = useState([]);
-  const [loading, setLoading] = useState(true);
-
+  const bizCardSettings = {
+    dots: false,
+    infinite: true,
+    slidesToShow: 1,
+    swipeToSlide: true,
+    adaptiveHeight: true,
+    variableWidth: true,
+    arrows: false,
+  };
 
   useEffect(() =>
   {
@@ -60,14 +69,14 @@ const Home = () =>
         if (data.length !== 0)
         {
           const items = data.map((item, index) => (
-            <div style={{ marginRight: "20px" }}>
-              <BizCard key={index} info={item} />
+            <div style={{ marginRight: "20px" }} key={index}>
+              <BizCard info={item} />
             </div>
           ));
           setItems(items);
         } else
         {
-          setItems([<div>받은 명함이 없습니다.</div>]);
+          setItems([]);
         }
       } catch (error)
       {
@@ -86,16 +95,6 @@ const Home = () =>
     return <div>로딩 중...</div>;
   }
 
-  const bizCardSettings = {
-    dots: false,
-    infinite: true,
-    slidesToShow: 1,
-    swipeToSlide: true,
-    adaptiveHeight: true,
-    variableWidth: true,
-    arrows: false,
-  };
-
   return (
     <div className={styles.Home}>
       <CustomCarousel
@@ -104,10 +103,14 @@ const Home = () =>
       />
       <div className={styles.bizCardCarousel}>
         <h3>최근 업데이트 명함</h3>
-        <CustomCarousel
-          items={bizCardItems}
-          settings={bizCardSettings}
-        />
+        {bizCardItems.length > 0 ? (
+          <CustomCarousel
+            items={bizCardItems}
+            settings={bizCardSettings}
+          />
+        ) : (
+          <div>공유 받은 명함이 없습니다.</div>
+        )}
       </div>
       <div className={styles.projectCarousel}>
         <h3>팀 스페이스</h3>

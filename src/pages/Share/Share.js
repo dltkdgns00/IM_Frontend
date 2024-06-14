@@ -5,7 +5,7 @@ import { ToastContainer, toast } from 'react-toastify';
 
 import styles from './Share.module.css';
 import 'react-toastify/dist/ReactToastify.css';
-import BizCard from '../../components/BizCard';
+import BizCard from '../BizCard/BizCard';
 
 const Share = () =>
 {

@@ -1,4 +1,4 @@
-import BizCard from "../../components/BizCard";
+import BizCard from "../BizCard/BizCard";
 import { deleteCookie, getCookie } from "../../utils/cookies";
 import styles from './Info.module.css';
 

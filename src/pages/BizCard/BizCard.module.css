@@ -27,7 +27,7 @@
 }
 
 .bizCard p {
-	color: #ffffff;
+	color: #ffffff !important;
 	margin: auto;
 	margin-bottom: 8px;
 	font-weight: lighter;

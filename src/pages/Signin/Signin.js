@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
 import styles from './Signin.module.css';
+import 'react-toastify/dist/ReactToastify.css';
+import { toast, ToastContainer } from 'react-toastify';
 
 const Signin = () =>
 {
@@ -31,16 +33,16 @@ const Signin = () =>
       {
         setCookie('authToken', response.data.token, { path: '/', maxAge: 7 * 24 * 60 * 60 });
         setCookie('memberCookie', response.data.member, { path: '/', maxAge: 7 * 24 * 60 * 60 });
-        console.log('로그인 성공');
+        toast.success('로그인 성공');
         navigate('/');
       } else
       {
-        alert('로그인 실패');
+        toast.error('로그인 실패');
       }
     } catch (error)
     {
-      console.error('로그인 중 오류 발생', error);
-      alert('로그인 중 오류가 발생했습니다.');
+      console.error(error);
+      toast.error('로그인 실패');
     }
   };
 
@@ -99,6 +101,7 @@ const Signin = () =>
           </div>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };

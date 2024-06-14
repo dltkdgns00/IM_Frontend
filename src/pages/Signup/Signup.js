@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import styles from './Signup.module.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const Signup = () =>
 {
@@ -65,8 +68,7 @@ const Signup = () =>
       validateForm(); // 인증 성공 후 유효성 검사
     } catch (error)
     {
-      console.error('인증번호 발송 중 오류가 발생했습니다.', error);
-      alert('인증번호 발송 중 오류가 발생했습니다.');
+      toast.error('인증번호 전송 실패');
     }
   };
 
@@ -100,7 +102,7 @@ const Signup = () =>
       console.log(response.data);
       if (response.data === '회원가입 완료!')
       {
-        console.log('회원가입 성공');
+        toast.success('회원가입 성공');
         navigate('/');
       } else
       {
@@ -108,8 +110,7 @@ const Signup = () =>
       }
     } catch (error)
     {
-      console.error('회원가입 중 오류가 발생했습니다.', error);
-      alert('회원가입 중 오류가 발생했습니다.');
+      toast.error('회원가입 실패');
     }
   };
 
