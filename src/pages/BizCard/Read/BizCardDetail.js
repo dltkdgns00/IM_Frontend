@@ -81,7 +81,7 @@ const BizCardDetail = () =>
               <p className={styles.title}>상세 정보</p>
               <img src="/svgs/valid.svg" alt="valid" className={styles.valid} style={{ display: valid ? 'block' : 'none' }} />
             </div>
-            <BizCard info={data} isNavigate={false} />
+            <BizCard bizCard={data} isNavigate={false} />
             <p>이름: {data.name}</p>
             <p>소속: {data.company}</p>
             <p>전화번호: {data.phoneNumber}</p>
