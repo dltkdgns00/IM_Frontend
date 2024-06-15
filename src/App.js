@@ -27,7 +27,8 @@ import EditTeam from './pages/Community/TeamSpace/Update/EditTeam';
 import DeleteTeam from './pages/Community/TeamSpace/Delete/DeleteTeam';
 import TerminateProject from './pages/Community/TeamSpace/TerminateProject/TerminateProject';
 
-import BizCardDetail from './pages/BizCard/BizCardDetail/BizCardDetail';
+import BizCardDetail from './pages/BizCard/Read/BizCardDetail';
+import EditBizCard from './pages/BizCard/Update/EditBizCard';
 
 const App = () =>
 {
@@ -51,6 +52,7 @@ const App = () =>
         <Route path="/community/teamspace/:teamId/terminateproject" element={<ProtectedRoute element={<TerminateProject />} />} />
 
         <Route path="/bizcard/:userId" element={<ProtectedRoute element={<BizCardDetail />} />} />
+        <Route path="/bizcard/:userId/edit" element={<ProtectedRoute element={<EditBizCard />} />} />
 
         <Route path="*" element={<ProtectedRoute element={<Layout />} />} />
       </Routes>

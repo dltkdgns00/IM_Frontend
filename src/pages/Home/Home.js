@@ -70,7 +70,7 @@ const Home = () =>
         {
           const items = data.map((item, index) => (
             <div style={{ marginRight: "20px" }} key={index}>
-              <BizCard info={item} />
+              <BizCard bizCard={item} />
             </div>
           ));
           setItems(items);

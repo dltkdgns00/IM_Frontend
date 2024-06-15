@@ -63,7 +63,7 @@ const Share = () =>
         <div onClick={handleBack}><img src='/svgs/backArrow.svg' alt='backArrow' /></div>
         <p>명함 공유</p>
       </div>
-      <BizCard info={{ name: name, company: org, phoneNumber: tel, email: email }} />
+      <BizCard bizCard={{ name: name, company: org, phoneNumber: tel, email: email }} />
       <div className={styles.shareQR}>
         <p>QR 코드</p>
         {url && <QRCode value={url} />}

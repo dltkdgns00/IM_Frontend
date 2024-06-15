@@ -27,10 +27,18 @@
 }
 
 .bizCard p {
-	color: #ffffff !important;
+	color: var(--text-color);
 	margin: auto;
 	margin-bottom: 8px;
 	font-weight: lighter;
+}
+
+.bizCard[data-text-color="#FFFFFF"] p {
+	color: #ffffff;
+}
+
+.bizCard[data-text-color="#000000"] p {
+	color: #000000;
 }
 
 .name {
