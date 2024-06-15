@@ -50,7 +50,7 @@ const Info = () =>
         <p>{userData.name}</p>
       </div>
       <BizCard
-        info={{ id: bizCard.id, name: bizCard.name, company: bizCard.company, phoneNumber: bizCard.phoneNumber, email: bizCard.email, color: bizCard.color }}
+        bizCard={{ id: bizCard.id, name: bizCard.name, company: bizCard.company, phoneNumber: bizCard.phoneNumber, email: bizCard.email, color: bizCard.color }}
         isNavigate={true}
         isEdit={true}
       />

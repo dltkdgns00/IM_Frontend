@@ -4,7 +4,7 @@ import styles from './BizCard.module.css';
 // 색상 밝기 계산 함수
 const calculateTextColor = (bgColor) =>
 {
-  if (!bgColor) return '#000000'; // 기본 글씨 색상
+  if (!bgColor) return '#ffffff'; // 기본 글씨 색상
 
   const color = bgColor.substring(1); // #을 제거
   const r = parseInt(color.substring(0, 2), 16); // R 값
@@ -32,14 +32,14 @@ const BizCard = ({ bizCard, isNavigate = false, isEdit = false }) =>
   }
 
   // 동적으로 글씨 색상 계산
-  const textColor = calculateTextColor(bizCard.color);
+  const textColor = calculateTextColor(bizCard.color || '#262626');
   const logoSrc = textColor === '#FFFFFF' ? '/svgs/bizCardLogoWhite.svg' : '/svgs/bizCardLogoBlack.svg';
 
   return (
     <div
       onClick={isNavigate ? handleClick : null}
       className={styles.bizCard}
-      style={{ backgroundColor: bizCard.color }}
+      style={{ backgroundColor: bizCard.color || '#262626' }}
       data-text-color={textColor}
     >
       <div className={styles.content}>
@@ -53,7 +53,7 @@ const BizCard = ({ bizCard, isNavigate = false, isEdit = false }) =>
         </div>
         <img className={styles.bizCardLogo} src={logoSrc} alt='bizCardLogo' />
       </div>
-    </div >
+    </div>
   );
 }
 

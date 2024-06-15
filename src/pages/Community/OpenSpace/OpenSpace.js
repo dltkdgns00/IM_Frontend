@@ -25,7 +25,6 @@ const OpenSpace = () =>
       // 서버에서 받아온 데이터의 content 속성 확인
       if (Array.isArray(response.data.content))
       {
-        console.log(response.data.content)
         setPosts(response.data.content);
       } else
       {

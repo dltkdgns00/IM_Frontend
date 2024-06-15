@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import BizCard from '../BizCard';
@@ -16,6 +16,8 @@ const EditBizCard = () =>
     description: '',
     color: '#262626'
   });
+
+  const navigate = useNavigate();
 
   const handleBizCard = async () =>
   {
@@ -49,6 +51,32 @@ const EditBizCard = () =>
     }));
   }
 
+  const handleEdit = async () =>
+  {
+    try
+    {
+      await axios.put(`https://introme.co.kr/v1/card/${userId}`,
+        {
+          name: bizCard.name,
+          company: bizCard.company,
+          description: bizCard.description,
+          color: bizCard.color
+        }
+      );
+      alert('수정되었습니다.');
+      navigate(-1);
+    }
+    catch (error)
+    {
+      console.error("Error updating business card data:", error);
+    }
+  }
+
+  const handleBack = () =>
+  {
+    navigate(-1);
+  }
+
   useEffect(() =>
   {
     handleBizCard();
@@ -66,8 +94,8 @@ const EditBizCard = () =>
           <input type="text" name="email" placeholder="이메일" value={bizCard.email} disabled />
           <textarea name="description" placeholder="자기소개" value={bizCard.description} onChange={handleChange} />
           <input type="color" name="color" value={bizCard.color} onChange={handleChange} />
-          <button>수정</button>
-          <button>취소</button>
+          <button onClick={handleEdit}>수정</button>
+          <button onClick={handleBack}>취소</button>
         </div>
       </div>
     </div>

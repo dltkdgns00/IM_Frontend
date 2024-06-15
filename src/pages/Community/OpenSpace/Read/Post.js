@@ -41,7 +41,6 @@ const Post = () =>
       // 서버에서 받아온 데이터의 content 속성 확인
       if (response.data)
       {
-        console.log(response.data);
         setPost(response.data); // 데이터 설정
       } else
       {

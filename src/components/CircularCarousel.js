@@ -12,9 +12,6 @@ const parseReactElement = (item) =>
 
 const CircularCarousel = ({ items }) =>
 {
-  items.map((item, index) => (
-    console.log(item)
-  ));
   return (
     <Swiper
       direction="vertical"

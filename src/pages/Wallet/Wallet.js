@@ -27,7 +27,7 @@ const Wallet = () =>
         if (data.length !== 0)
         {
           const items = data.map((item, index) => (
-            <BizCard key={index} info={item} isNavigate={true} />
+            <BizCard key={index} bizCard={item} isNavigate={true} />
           ));
           setItems(items);
         } else

@@ -21,8 +21,6 @@ const TeamSpace = () =>
       const userId = userData.id;
       const response = await axios.get('https://introme.co.kr/v1/team/' + userId);
 
-      console.log(response.data);
-
       setTeams(response.data);
     } catch (error)
     {
