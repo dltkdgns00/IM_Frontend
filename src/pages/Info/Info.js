@@ -28,7 +28,7 @@ const Info = () =>
 
   const handleEditInfo = () =>
   {
-    navigate('/edit');
+    navigate('./edit');
   }
 
   const handleSignout = () =>
