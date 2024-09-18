@@ -9,6 +9,7 @@ const NewPost = () =>
 {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+  const [file, setFile] = useState(null);
 
   const navigate = useNavigate();
 
@@ -20,6 +21,11 @@ const NewPost = () =>
   const handleContentChange = (e) =>
   {
     setContent(e.target.value);
+  };
+
+  const handleFileChange = (e) =>
+  {
+    setFile(e.target.files[0]);
   };
 
   const handleSubmit = async (e) =>
@@ -36,21 +42,35 @@ const NewPost = () =>
     const decodedMemberCookie = decodeURIComponent(memberCookie);
     const userData = JSON.parse(decodedMemberCookie);
 
-    const response = await axios.post('https://introme.co.kr/v1/board/', {
-      "author": userData.id,
-      "title": title,
-      "content": content
-    }, {
-      headers: {
-        'Content-Type': 'application/json',
-      }
-    });
+    const formData = new FormData();
+    formData.append('board', JSON.stringify({
+      author: userData.id,
+      title: title,
+      content: content
+    }));
+    if (file)
+    {
+      formData.append('file', file);
+    }
 
-    if (response.data === '작성완료!')
+    try
     {
-      navigate(-1);
-    } else
+      const response = await axios.post('https://introme.co.kr/v1/board/', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        }
+      });
+
+      if (response.data === '작성완료!')
+      {
+        navigate(-1);
+      } else
+      {
+        alert('글 작성 중 오류가 발생했습니다.');
+      }
+    } catch (error)
     {
+      console.error('Error submitting the post:', error);
       alert('글 작성 중 오류가 발생했습니다.');
     }
   };
@@ -65,9 +85,7 @@ const NewPost = () =>
       <div className={styles.p}>
         <p>새 글</p>
       </div>
-      <form
-        className={styles.form}
-        onSubmit={handleSubmit}>
+      <form className={styles.form} onSubmit={handleSubmit}>
         <input
           className={styles.title}
           type="text"
@@ -80,6 +98,11 @@ const NewPost = () =>
           placeholder="내용"
           value={content}
           onChange={handleContentChange}
+        />
+        <input
+          className={styles.file}
+          type="file"
+          onChange={handleFileChange}
         />
         <button className={styles.submit} type="submit">생성</button>
         <button className={styles.cancel} onClick={handleCancel} type="button">취소</button>

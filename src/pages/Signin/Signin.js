@@ -60,7 +60,7 @@ const Signin = () =>
   return (
     <div className={styles.Login}>
       <div className={styles.logo}>
-        <img src="svgs/INTROME.svg" alt="logo" />
+        <img src="/svgs/INTROME.svg" alt="logo" />
       </div>
       <div className={styles.loginForm}>
         <div className={styles.input_container}>
@@ -71,7 +71,7 @@ const Signin = () =>
             onChange={(e) => setEmail(e.target.value)}
           />
           <div className={styles.clear_btn} onClick={clearInput}>
-            <img src="svgs/clear.svg" alt="clear" />
+            <img src="/svgs/clear.svg" alt="clear" />
           </div>
         </div>
         <div className={styles.input_container}>
@@ -83,9 +83,9 @@ const Signin = () =>
           />
           <div className={styles.hidden_btn} onClick={togglePasswordVisibility}>
             {showPassword ? (
-              <img src="svgs/hidden.svg" alt="hidden" />
+              <img src="/svgs/hidden.svg" alt="hidden" />
             ) : (
-              <img src="svgs/visible.svg" alt="visible" />
+              <img src="/svgs/visible.svg" alt="visible" />
             )}
           </div>
         </div>
